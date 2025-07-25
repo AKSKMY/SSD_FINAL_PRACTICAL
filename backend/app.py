@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, Response
 from html import escape
 import re
 
@@ -45,10 +45,10 @@ def home():
     
     return render_template('home.html', search_term=search_term, error_message=error_message)
 
-@app.route('/search')
+@app.route('/search', methods=['GET'])
 def display_search():
     search_term = request.args.get('search_term', '')
     return render_template('search_results.html', search_term=search_term)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
